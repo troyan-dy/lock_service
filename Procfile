@@ -1,1 +1,1 @@
-python -m lock_service.app
+web: python -m lock_service.app
