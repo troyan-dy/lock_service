@@ -11,3 +11,8 @@ lint:
 format:
 	python3.9 -m black lock_service/ tests/
 	python3.9 -m isort lock_service/ tests/
+
+start:
+	docker-compose up -d --build  && docker-compose logs -f
+stop:
+	docker-compose down
