@@ -14,5 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY lock_service /lock_service
 
 
-
-CMD ["python", "-m", "lock_service.app"]
+CMD ["uvicorn", "lock_service.app:app", "--host=0.0.0.0", "--port=5000"]
