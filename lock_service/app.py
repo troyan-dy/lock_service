@@ -29,7 +29,7 @@ async def put_lock(key: str) -> bool:
 
 
 def create_app() -> FastAPI:
-    app = FastAPI()
+    app = FastAPI(title="Lock service")
     app.include_router(api_router)
     return app
 
@@ -37,5 +37,4 @@ def create_app() -> FastAPI:
 app = create_app()
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    # app = create_app()
     uvicorn.run(app=app, host="0.0.0.0", port=port)
