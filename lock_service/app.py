@@ -1,5 +1,5 @@
 import asyncio
-from typing import Optional
+from typing import Any, Dict
 
 import uvicorn
 from fastapi import APIRouter, FastAPI
@@ -7,11 +7,11 @@ from fastapi import APIRouter, FastAPI
 api_router = APIRouter()
 
 
-LOCKS = {}
+LOCKS: Dict[str, Any] = {}
 
 
 @api_router.post("/take")
-async def take_lock(key: str, expire: Optional[int] = 10):
+async def take_lock(key: str) -> bool:
     if key in LOCKS:
         await LOCKS[key].wait()
     else:
@@ -20,7 +20,7 @@ async def take_lock(key: str, expire: Optional[int] = 10):
 
 
 @api_router.post("/put")
-async def put_lock(key: str):
+async def put_lock(key: str) -> bool:
     if key in LOCKS:
         LOCKS[key].set()
         del LOCKS[key]

@@ -3,6 +3,7 @@ from typing import AsyncGenerator
 import fastapi
 import pytest
 from async_asgi_testclient import TestClient
+
 from lock_service import app
 
 
