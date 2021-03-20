@@ -1,1 +1,1 @@
-web: python -m lock_service.app
+web: uvicorn lock_service.app:app --host=0.0.0.0 --port=${PORT:-5000}
