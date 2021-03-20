@@ -19,3 +19,16 @@
 ### Start in docker
 - `make start`
 - `make stop`
+
+
+## Usage
+
+- take lock
+```bash
+curl -X POST http://0.0.0.0:8000/take?key=123
+```
+
+- put lock
+```bash
+curl -X POST http://0.0.0.0:8000/put?key=123
+```
