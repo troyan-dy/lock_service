@@ -1,3 +1,4 @@
+import asyncio
 from typing import Optional
 
 import uvicorn
@@ -6,13 +7,23 @@ from fastapi import APIRouter, FastAPI
 api_router = APIRouter()
 
 
-@api_router.get("/lock")
-async def get_lock(key: str, expire: Optional[int] = None):
+LOCKS = {}
+
+
+@api_router.post("/take")
+async def take_lock(key: str, expire: Optional[int] = 10):
+    if key in LOCKS:
+        await LOCKS[key].wait()
+    else:
+        LOCKS[key] = asyncio.Event()
     return True
 
 
-@api_router.delete("/lock")
-async def remove_lock(key: str):
+@api_router.post("/put")
+async def put_lock(key: str):
+    if key in LOCKS:
+        LOCKS[key].set()
+        del LOCKS[key]
     return True
 
 
