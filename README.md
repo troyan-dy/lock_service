@@ -1,4 +1,7 @@
 # lock_service
+http lock service
+
+Ready for heroku
 
 ## Dependencies
 - docker-compose
