@@ -15,6 +15,9 @@ fi
 .venv/bin/python -m pip install --quiet --disable-pip-version-check \
   -r requirements.txt -r resuirements.dev.txt
 
+# Make sure the WPS flake8 plugin is installed and loads.
+.venv/bin/python -c "import wemake_python_styleguide"
+
 if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
   echo "export VIRTUAL_ENV=\"$PWD/.venv\"" >> "$CLAUDE_ENV_FILE"
   echo "export PATH=\"$PWD/.venv/bin:\$PATH\"" >> "$CLAUDE_ENV_FILE"

@@ -6,11 +6,14 @@ test:
 
 lint:
 	python3 -m mypy lock_service/
-	python3 -m flake8 lock_service/ tests/
+	python3 -m flake8 lock_service/ tests/ examples/
+
+wps:
+	python3 -m flake8 --select=WPS lock_service/ tests/ examples/
 
 format:
-	python3 -m black lock_service/ tests/
-	python3 -m isort lock_service/ tests/
+	python3 -m black lock_service/ tests/ examples/
+	python3 -m isort lock_service/ tests/ examples/
 
 start:
 	docker compose up -d --build  && docker compose logs -f

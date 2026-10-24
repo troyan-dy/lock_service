@@ -29,6 +29,9 @@ jobs:
       - name: Lint
         run: |
           make lint
+      - name: WPS
+        run: |
+          make wps
       - name: Tests
         run: |
           make test
