@@ -5,7 +5,7 @@ Ready for heroku
 
 ## Dependencies
 - docker-compose
-- python 3.9
+- python 3.14
 
 ## Commands
 ### Install
