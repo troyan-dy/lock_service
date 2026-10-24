@@ -20,4 +20,4 @@ async def test_correct_work(client):
             await client.post("/put?key=222")
             await client.post("/take?key=222")
     except asyncio.TimeoutError:
-        assert False, "Got unexpected timeout"
+        pytest.fail("Got unexpected timeout")

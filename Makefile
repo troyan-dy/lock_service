@@ -1,18 +1,21 @@
 setup:
-	pip3.9 install -r requirements.txt
-	pip3.9 install -r resuirements.dev.txt
+	python3 -m pip install -r requirements.txt
+	python3 -m pip install -r resuirements.dev.txt
 test:
-	python3.9 -m pytest tests/
+	python3 -m pytest tests/
 
 lint:
-	python3.9 -m mypy lock_service/
-	python3.9 -m flake8 lock_service/ tests/
+	python3 -m mypy lock_service/
+	python3 -m flake8 lock_service/ tests/ examples/
+
+wps:
+	python3 -m flake8 --select=WPS lock_service/ tests/ examples/
 
 format:
-	python3.9 -m black lock_service/ tests/
-	python3.9 -m isort lock_service/ tests/
+	python3 -m black lock_service/ tests/ examples/
+	python3 -m isort lock_service/ tests/ examples/
 
 start:
-	docker-compose up -d --build  && docker-compose logs -f
+	docker compose up -d --build  && docker compose logs -f
 stop:
-	docker-compose down
+	docker compose down
